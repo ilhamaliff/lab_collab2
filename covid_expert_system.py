@@ -46,7 +46,8 @@ class CovidExpertSystem:
     def __init__(self, root):
         self.root = root
         self.root.title("COVID-19 Diagnosis Expert System")
-        self.root.geometry("450x350")
+        self.root.geometry("500x450")
+        self.root.configure(bg="#0be2b3")
 
         # Initialize CLIPS environment
         self.env = clips.Environment()
