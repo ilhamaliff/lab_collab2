@@ -47,7 +47,7 @@ class CovidExpertSystem:
         self.root = root
         self.root.title("COVID-19 Diagnosis Expert System")
         self.root.geometry("500x450")
-        self.root.configure(bg="#0be2b3")
+        self.root.configure(bg="#00fac4")
 
         # Initialize CLIPS environment
         self.env = clips.Environment()
@@ -78,19 +78,45 @@ class CovidExpertSystem:
         
         # --- End of new rule loading method ---
 
-        # Style
+        # --- Style ---
         self.style = ttk.Style()
-        self.style.configure("TLabel", font=("Helvetica", 12))
-        self.style.configure("TCheckbutton", font=("Helvetica", 11))
-        self.style.configure("TButton", font=("Helvetica", 12, "bold"))
-        self.style.configure("Result.TLabel", font=("Helvetica", 12, "bold"))
+        self.style.theme_use('clam')
+        
+        # <<< DEFINE YOUR COLOR HERE >>>
+        your_new_color = "#51ffff"  # You can change this hex code
 
-        # Main frame
-        main_frame = ttk.Frame(root, padding="20")
+        
+        self.style.configure("TFrame", background=your_new_color)
+        
+        self.style.configure("TLabel", 
+                             font=("Helvetica", 12), 
+                             background=your_new_color) 
+                             
+        self.style.configure("TCheckbutton", 
+                             font=("Helvetica", 11), 
+                             background=your_new_color) 
+                             
+        self.style.configure("TButton", 
+                             font=("Helvetica", 12, "bold"),
+                             padding=10) 
+        
+        self.style.map("TButton",
+                       background=[('active', '#005f9e'), ('!disabled', '#0078d4')],
+                       foreground=[('active', 'white'), ('!disabled', 'white')]
+                       )
+                             
+        self.style.configure("Result.TLabel", 
+                             font=("Helvetica", 12, "bold"), 
+                             background=your_new_color) 
+
+        # --- Main frame ---
+        
+        # <<< TELL THE FRAME TO USE THE STYLE >>>
+        main_frame = ttk.Frame(root, padding="20", style="TFrame") 
         main_frame.pack(expand=True, fill=tk.BOTH)
 
         title_label = ttk.Label(main_frame, text="Please answer the following questions:", font=("Helvetica", 14, "bold"))
-        title_label.pack(pady=(0, 15))
+        # (The line below this in your code is fine)
 
         # --- UI Variables ---
         self.fever_var = tk.StringVar(value="no")
